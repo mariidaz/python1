@@ -6,18 +6,27 @@ from django.urls import reverse
 class Category(models.Model):
     category = models.CharField(u'Категорія', max_length=250, help_text=u'Максимум 250 символів')
     slug = models.SlugField(u'Слаг', default='')
+    objects = models.Manager() 
     
     class Meta:
         verbose_name = u'Категорія для публікації'
         verbose_name_plural = u'Категорії для публікації'
         
-        def __str__(self):
-            return self.category
+    def __str__(self):
+        return self.category
+    
+    def get_absolute_url(self):
+        try:
+            url = reverse('articles-category-list', kwargs={'slug': self.slug})
+        except:
+            url = "/"
+        return url
 
 class Article(models.Model):
     title = models.CharField(u'Заголовок', max_length=250, help_text=u'Максимум 250 символів')
     description = models.TextField(blank=True, verbose_name=u'Опис')
     pub_date = models.DateTimeField(u'Дата публікації', default=timezone.now)
+    image = models.ImageField(upload_to='photos/', blank=True, null=True)
     slug = models.SlugField(u'Слаг', unique_for_date='pub_date')
     main_page = models.BooleanField(u'Головна', default=False, help_text=u'Показувати на головній сторінці')
     category = models.ForeignKey(Category, related_name='articles', blank=True, null=True, verbose_name=u'Категорія', on_delete=models.CASCADE)

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Мій блог{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+    <nav>
+        <a href="/">Головна</a> |
+        <a href="{% url 'articles-list' %}">Публікації</a> |
+        <a href="#">Пошук</a> |
+        <a href="#">Контакти</a>
+        {% if user.is_staff %}
+        | <a href="/admin/">Адмінка</a>
+        {% endif %}
+    </nav>
+
+    <hr>
+
+    {% block content %}{% endblock %}
+
+    <hr>
+
+    <footer>
+        <p>© 2025 Мій блог</p>
+    </footer>
+
+</body>
+
+</html>

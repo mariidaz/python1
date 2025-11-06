@@ -1,11 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Головна{% endblock %}
+
+{% load static %}
+
+{% block content %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Головна</title>
 </head>
 <body>
-    Home page
+    <h1>Ласкаво просимо на сайт блогу!</h1>
+    <p>Тут ви можете читати наші публікації або перейти до інших розділів:</p>
+
+    <ul>
+        <li><a href="{% url 'articles-list' %}">Переглянути публікації</a></li>
+        <li><a href="#">Контакти</a></li>
+        <li><a href="#">ℹПро нас</a></li>
+    </ul>
 </body>
 </html>
+{% endblock %}
