@@ -9,4 +9,7 @@ urlpatterns = [
     path(r'articles', ArticleList.as_view(), name='articles-list'),
     path(r'articles/category/<slug>', ArticleCategoryList.as_view(), name='articles-category-list'),
     path(r'articles/<year>/<month>/<day>/<slug>', ArticleDetail.as_view(), name='news-detail'),
+    path('about/', views.about, name='about'),
+    path('contacts/', views.contacts, name='contacts'),
+    path(r'articles/category/<slug>', ArticleCategoryList.as_view(), name='articles-category-list'),
 ]

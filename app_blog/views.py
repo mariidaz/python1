@@ -2,10 +2,6 @@ from django.shortcuts import render
 from django.views.generic import TemplateView, ListView, DateDetailView
 from .models import Article, Category
 
-
-# class HomePageView(TemplateView):
-#     def get(self, request, **kwargs):
-#         return render(request, 'index.html', context=None)
     
 class HomePageView(ListView):
    model = Article
@@ -68,4 +64,9 @@ class ArticleCategoryList(ArticleList):
             category__slug__in=[self.kwargs['slug']]
         ).distinct()
         return articles
+    
+def about(request):
+    return render(request, 'about.html')
 
+def contacts(request):
+    return render(request, 'contacts.html')
