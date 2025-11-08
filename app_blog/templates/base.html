@@ -6,29 +6,49 @@
     <title>{% block title %}Мій блог{% endblock %}</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 </head>
 
-<body>
-    <nav>
-        <a href="/">Головна</a> |
-        <a href="{% url 'articles-list' %}">Публікації</a> |
-        <a href="{% url 'about' %}">Про нас</a> |
-        <a href="{% url 'contacts' %}">Контакти</a>
-        {% if user.is_staff %}
-        | <a href="/admin/">Адмінка</a>
-        {% endif %}
+<body class="d-flex flex-column min-vh-100">
+    <nav class="navbar navbar-expand-lg navbar-light shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="/">🌷 Мій блог</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Перемкнути навігацію">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="/">Головна</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'articles-list' %}">Публікації</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">Про нас</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'contacts' %}">Контакти</a></li>
+                    {% if user.is_staff %}
+                    <li class="nav-item"><a class="nav-link" href="/admin/">Адмінка</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
     </nav>
 
-    <hr>
+    <main class="container flex-grow-1 py-4">
+        <div class="content-box">
+            {% block content %}{% endblock %}
+        </div>
+    </main>
 
-    {% block content %}{% endblock %}
-
-    <hr>
-
-    <footer>
-        <p>© 2025 Мій блог</p>
+    <footer class="footer mt-auto py-3 bg-light border-top">
+        <div class="container text-center">
+            <p class="text-muted mb-0">© 2025 Мій блог. Створено на Django</p>
+        </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
 </body>
+
 
 </html>

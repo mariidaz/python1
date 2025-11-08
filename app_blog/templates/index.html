@@ -7,19 +7,24 @@
 {% block content %}
 <!DOCTYPE html>
 <html lang="uk">
+
 <head>
     <meta charset="UTF-8">
     <title>Головна</title>
 </head>
-<body>
-    <h1>Ласкаво просимо на сайт блогу!</h1>
-    <p>Тут ви можете читати наші публікації або перейти до інших розділів:</p>
 
-    <ul>
-        <li><a href="{% url 'articles-list' %}">Переглянути публікації</a></li>
-        <li><a href="{% url 'contacts' %}">Контакти</a></li>
-        <li><a href="{% url 'about' %}">Про нас</a></li>
-    </ul>
-</body>
+<div class="container my-5 text-center">
+    <h1 class="text-pink mb-3">Ласкаво просимо на сайт блогу!</h1>
+    <p class="mb-4 fs-5 text-secondary">
+        Тут ви можете читати наші публікації або перейти до інших розділів:
+    </p>
+
+    <div class="list-group d-inline-block text-start">
+        <a href="{% url 'articles-list' %}" class="list-group-item list-group-item-action text-pink fw-semibold">Переглянути публікації</a>
+        <a href="{% url 'contacts' %}" class="list-group-item list-group-item-action text-pink fw-semibold">Контакти</a>
+        <a href="{% url 'about' %}" class="list-group-item list-group-item-action text-pink fw-semibold">Про нас</a>
+    </div>
+</div>
+
 </html>
 {% endblock %}

@@ -9,9 +9,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js">
 </script>
 {% endblock %}
-<div class="fotorama">
+<div class="fotorama" data-width="700" data-height="400" data-fit="cover" data-nav="thumbs" data-thumbheight="80" data-thumbwidth="120">
     {% for image in images %}
-    <img src='{{ image.image.url }}' alt="{{ image.description }}" data-caption="{{ image.description }}">
+    <img src="{{ image.image.url }}" alt="{{ image.description }}" data-caption="{{ image.description }}">
     {% endfor %}
 </div>
 {% endspaceless %}

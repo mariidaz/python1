@@ -3,40 +3,31 @@
 {% block title %}Публікації{% endblock %}
 
 {% block content %}
-<!DOCTYPE html>
-<html lang="uk">
-<head>
-    <meta charset="UTF-8">
-    <title>Публікації</title>
-</head>
-
-<body>
-    <h2>Публікації</h2>
+<div class="container my-4">
+    <h2 class="text-center text-pink mb-4">Публікації</h2>
 
     {% if category %}
-        <h4>{{ category }}</h4>
+    <h4 class="text-center text-secondary mb-4">{{ category }}</h4>
     {% endif %}
 
-    {% for item in items %}
-        <div class="articles-row">
-            <a href="{{ item.get_absolute_url }}">
-                <h4>{{ item.title }}</h4>
-            </a>
-            <h5>{{ item.pub_date|date:"j E Y" }}</h5>
-            <p>{{ item.description|striptags|truncatewords_html:32 }}</p>
-            
-            {% if item.images.all %}
-            <div class="container-image">
-                <img class="img" src="{{ item.images.all.0.image.url }}" alt="">
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+        {% for item in items %}
+        <div class="col">
+            <div class="card h-100 shadow-sm border-0">
+                {% if item.images.all %}
+                <img src="{{ item.images.all.0.image.url }}" class="card-img-top article-card-img"
+                    alt="{{ item.title }}">
+                {% endif %}
+                <div class="card-body">
+                    <a href="{{ item.get_absolute_url }}" class="text-decoration-none">
+                        <h5 class=" text-pink card-title">{{ item.title }}</h5>
+                    </a>
+                    <h6 class="card-subtitle mb-2 text-muted">{{ item.pub_date|date:"j E Y" }}</h6>
+                    <p class="card-text">{{ item.description|striptags|truncatewords_html:32 }}</p>
+                </div>
             </div>
-            {% endif %}
         </div>
-    {% endfor %}
-
-    <div class="back-home">
-        <a href="/">На головну</a>
+        {% endfor %}
     </div>
-</body>
-</html>
+</div>
 {% endblock %}
-

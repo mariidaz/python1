@@ -5,20 +5,23 @@
 {% block content %}
 <!DOCTYPE html>
 <html lang="uk">
+
 <head>
     <meta charset="UTF-8">
     <title>{{ item.title }}</title>
-    
+
 </head>
 
 <body>
-    <ol class="breadcrumb">
-        <li><a href="/">Головна</a></li>
-        <li><a href="{% url 'articles-list' %}">Публікації</a></li>
+    <ol class="breadcrumb custom-breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Головна</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'articles-list' %}">Публікації</a></li>
         {% if item.category %}
-        <li><a href="{{ item.category.get_absolute_url }}">{{ item.category|upper }}</a></li>
+        <li class="breadcrumb-item">
+            <a href="{{ item.category.get_absolute_url }}">{{ item.category|upper }}</a>
+        </li>
         {% endif %}
-        <li>{{ item.title|upper }}</li>
+        <li class="breadcrumb-item active" aria-current="page">{{ item.title|upper }}</li>
     </ol>
 
     <h3>{{ item.title }}</h3>
@@ -29,12 +32,12 @@
     </div>
 
     {% if item.images.all %}
+    <div class="article-images">
         {% include 'fotorama.html' with images=images %}
+    </div>
     {% endif %}
 
-    <p class="back-link">
-        <a href="{% url 'articles-list' %}">До списку публікацій</a>
-    </p>
 </body>
+
 </html>
 {% endblock %}
